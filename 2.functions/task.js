@@ -1,7 +1,7 @@
 // Задание 1
 function getArrayParams(arr) {
-  let min = Math.max(...arr),max = Math.min(...arr),sum = 0;
-  for (i = 0; i < arr.length; i++) {
+  let min = Infinity,max = -Infinity,sum = 0;
+  for (let i = 0; i < arr.length; i++) {
     if (arr[i] < min) {
       min = arr[i];
     }
@@ -23,21 +23,17 @@ function worker(arr) {
 }
 
 function makeWork(arrOfArr, func) {
-  let max = {};
-  let maxSum = -Infinity;
-  let index = -1;
-  for (i = 0; i < arrOfArr.length; i++) {
-    if (maxSum < func(arrOfArr[i])){
-      maxSum = func(arrOfArr[i]);
-      index = i;
+  let max = -Infinity;
+  for (let i = 0; i < arrOfArr.length; i++) {
+    if (max < func(arrOfArr[i])){
+      max = func(arrOfArr[i]);
     }
   }
-  max.maxSum = maxSum;
-  max.maxArr = arrOfArr[index];
-  return maxSum
+  return max;
 }
 
 // Задание 3
 function worker2(arr) {
-  return Math.abs(Math.max(...arr) - Math.min(...arr));
+  let result = getArrayParams(arr);
+  return Math.abs(result.max - result.min);
 }
