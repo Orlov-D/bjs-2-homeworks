@@ -1,8 +1,7 @@
 function Student(name, gender, age) {
-  name: name;
-  gender: gender;
-  age: age;
-  subject: "";
+  this.name = name;
+  this.gender = gender;
+  this.age = age;
 }
 
 Student.prototype.setSubject = function (subjectName) {
