@@ -15,7 +15,8 @@ function validateCount(newCount) {
 
 class Triangle {
     constructor(first, second, third) {
-        if ((first + second) < third || (first + third) < second || (third + second) < first) {
+        if ((first + second) < third || (first + third) < second || (third + second) < first) { 
+            //Надо ли тут в скобки каждое условие через или брать? ((first + second) < third)
             throw new Error("Треугольник с такими сторонами не существует");
         }
         this.first = first;
@@ -35,6 +36,13 @@ function getTriangle(first, second, third) {
     try {
         return new Triangle(first, second, third);
     } catch (e) {
-        return { getArea() { return "Ошибка! Треугольник не существует" }, getPerimeter() { return "Ошибка! Треугольник не существует" } }
+        return {
+            getArea() {
+                return "Ошибка! Треугольник не существует"
+            },
+            getPerimeter() {
+                return "Ошибка! Треугольник не существует"
+            }
+        }
     }
 }

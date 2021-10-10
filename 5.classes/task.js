@@ -6,7 +6,9 @@ class PrintEditionItem {
         this.state = 100;
         this.type = null;
     }
-    fix() { this.state = this.state * 1.5 };
+    fix() {
+        this.state = this.state * 1.5
+    };
     set state(val) {
         if (val > 100) {
             this._state = 100;
@@ -50,7 +52,11 @@ class Library {
         this.name = name;
         this.books = [];
     }
-    addBook(book) { if (book.state > 30) { this.books.push(book); } };
+    addBook(book) {
+        if (book.state > 30) {
+            this.books.push(book);
+        }
+    };
     findBookBy(type, value) {
         for (let elem of this.books) {
             if (elem[type] === value) {
