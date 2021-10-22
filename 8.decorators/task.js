@@ -6,10 +6,10 @@ function cachingDecoratorNew(func) {
       return "Из кэша: " + cache[hash];
     } else if (Object.keys(cache).length === 5) {
       delete cache[Object.keys(cache)[0]];
-      cache[hash] = func(...args);
+      cache[hash] = func.apply(this, args);
       return "Вычисляем: " + cache[hash];
     } else {
-      cache[hash] = func(...args);
+      cache[hash] = func.apply(this, args);
       return "Вычисляем: " + cache[hash];
     }
   };
@@ -17,11 +17,11 @@ function cachingDecoratorNew(func) {
 
 function debounceDecoratorNew(func, ms) {
   let flag;
-  return function () {
+  return function (...args) {
     if (flag) {
       return;
     }
-    func();
+    func.apply(this, ...args);
     flag = true;
     setTimeout(() => {
       flag = false;
@@ -29,14 +29,14 @@ function debounceDecoratorNew(func, ms) {
   }
 }
 
-function debounceDecorator2(func) {
+function debounceDecorator2(func, ms) {
   let flag;
-  function withCounter() {
+  function withCounter(...args) {
     withCounter.history++;
     if (flag) {
       return;
     }
-    func();
+    func.apply(this, ...args);
     flag = true;
     setTimeout(() => {
       flag = false;
